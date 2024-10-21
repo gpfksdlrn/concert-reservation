@@ -1,6 +1,6 @@
-package com.concert.app.domain.concert.entity;
+package com.concert.app.domain.payment.entity;
 
-import com.concert.app.domain.concert.enums.PaymentType;
+import com.concert.app.domain.payment.enums.PaymentType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

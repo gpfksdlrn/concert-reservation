@@ -1,6 +1,6 @@
-package com.concert.app.domain.concert.entity;
+package com.concert.app.domain.reservation.entity;
 
-import com.concert.app.domain.concert.enums.ReservationStatus;
+import com.concert.app.domain.reservation.enums.ReservationStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.concert.app.domain.concert.enums;
+package com.concert.app.domain.reservation.enums;
 
 public enum ReservationStatus {
     TEMP_RESERVED,
