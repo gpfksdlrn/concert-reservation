@@ -1,8 +1,7 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.4.0-SNAPSHOT'
+	id 'org.springframework.boot' version '3.2.11-SNAPSHOT'
 	id 'io.spring.dependency-management' version '1.1.6'
-	id 'org.asciidoctor.jvm.convert' version '3.3.2'
 }
 
 group = 'com'
@@ -22,16 +21,10 @@ configurations {
 
 repositories {
 	mavenCentral()
-	maven { url 'https://repo.spring.io/milestone' }
 	maven { url 'https://repo.spring.io/snapshot' }
 }
 
-ext {
-	set('snippetsDir', file("build/generated-snippets"))
-}
-
 dependencies {
-	// Spring
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
@@ -39,25 +32,33 @@ dependencies {
 	// p6spy
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
 
-	// DB
-	runtimeOnly 'com.h2database:h2'
-	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-
-	// Lombok
+	// lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	// TEST
+	// database
+	runtimeOnly 'com.h2database:h2'
+	implementation 'org.mariadb.jdbc:mariadb-java-client:3.4.1'
+
+	// test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// gson
+	implementation 'com.google.code.gson:gson:2.8.9'
+
+	// springDocs
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
+
+	// Guava
+	implementation("com.google.guava:guava:33.0.0-jre")
+
+	// JWT
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5' // 필요한 경우 JSON 처리용
 }
 
 tasks.named('test') {
-	outputs.dir snippetsDir
 	useJUnitPlatform()
-}
-
-tasks.named('asciidoctor') {
-	inputs.dir snippetsDir
-	dependsOn test
 }
