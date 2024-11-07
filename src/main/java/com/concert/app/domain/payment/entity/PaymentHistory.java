@@ -25,7 +25,7 @@ public class PaymentHistory {
     private Long paymentId;
 
     @Column(name = "amount_change", nullable = false)
-    private Integer amountCharge;
+    private Long amountCharge;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
@@ -36,4 +36,30 @@ public class PaymentHistory {
 
     @Column(name = "is_delete", nullable = false)
     private Boolean isDelete = false;
+
+    public PaymentHistory(Long userId, Long amount, PaymentType paymentType) {
+        this.userId = userId;
+        this.paymentId = null;
+        this.amountCharge = amount;
+        this.type = paymentType;
+        this.createdDt = LocalDateTime.now();
+        this.isDelete = false;
+    }
+
+    public PaymentHistory(Long userId, Long amount, PaymentType paymentType, Long paymentId) {
+        this.userId = userId;
+        this.paymentId = paymentId;
+        this.amountCharge = amount;
+        this.type = paymentType;
+        this.createdDt = LocalDateTime.now();
+        this.isDelete = false;
+    }
+
+    public static PaymentHistory enterPaymentHistory(Long userId, Long amount, PaymentType paymentType) {
+        return new PaymentHistory(userId, amount, paymentType);
+    }
+
+    public static PaymentHistory enterPaymentHistory(Long userId, Long amount, PaymentType paymentType, Long paymentId) {
+        return new PaymentHistory(userId, amount, paymentType, paymentId);
+    }
 }

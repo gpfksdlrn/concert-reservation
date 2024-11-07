@@ -1,10 +1,13 @@
 package com.concert.app.domain.concert.entity;
 
 import com.concert.app.domain.concert.enums.SeatStatus;
+import com.concert.app.interfaces.api.exception.ApiException;
+import com.concert.app.interfaces.api.exception.ExceptionCode;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.boot.logging.LogLevel;
 
 import java.time.LocalDateTime;
 
@@ -23,7 +26,7 @@ public class ConcertSeat {
     private Long concertScheduleId;
 
     @Column(name = "amount", nullable = false)
-    private Integer amount;
+    private Long amount;
 
     @Column(name = "position", nullable = false)
     private Integer position;
@@ -40,4 +43,16 @@ public class ConcertSeat {
 
     @Column(name = "is_delete", nullable = false)
     private Boolean isDelete = false;
+
+    public void isReserveCheck() {
+        if(this.seatStatus != SeatStatus.AVAILABLE) {
+            throw new ApiException(ExceptionCode.E004, LogLevel.ERROR);
+        } else {
+            this.seatStatus = SeatStatus.TEMP_RESERVED;
+        }
+    }
+
+    public void finishSeatReserve() {
+        this.seatStatus = SeatStatus.RESERVED;
+    }
 }

@@ -1,10 +1,13 @@
 package com.concert.app.domain.concert.entity;
 
 import com.concert.app.domain.concert.enums.TotalSeatStatus;
+import com.concert.app.interfaces.api.exception.ApiException;
+import com.concert.app.interfaces.api.exception.ExceptionCode;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.boot.logging.LogLevel;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -46,4 +49,10 @@ public class ConcertSchedule {
 
     @Column(name = "is_delete", nullable = false)
     private Boolean isDelete = false;
+
+    public void isSoldOutCheck() {
+        if(this.totalSeatStatus != TotalSeatStatus.AVAILABLE) {
+            throw new ApiException(ExceptionCode.E002, LogLevel.INFO);
+        }
+    }
 }

@@ -8,3 +8,10 @@ springdoc:
 
 server:
   port: 8080
+
+spring:
+  profiles:
+    active: test
+
+jwt:
+  secret-key: "2d0351915b13fda5a5d2631566afe0ae93e13a0372929c79fd462227373fb93f7d8b6f0fb9d14f738aefa43c18d16515295229084e0df2e004efd604c00a4340"
