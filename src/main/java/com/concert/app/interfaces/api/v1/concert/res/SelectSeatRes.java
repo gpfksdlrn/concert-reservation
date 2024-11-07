@@ -4,7 +4,6 @@ import com.concert.app.domain.concert.dto.SelectSeatResult;
 import com.concert.app.domain.concert.enums.SeatStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

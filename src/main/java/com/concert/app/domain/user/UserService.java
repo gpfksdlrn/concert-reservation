@@ -1,6 +1,5 @@
 package com.concert.app.domain.user;
 
-import com.concert.app.domain.payment.entity.PaymentHistory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

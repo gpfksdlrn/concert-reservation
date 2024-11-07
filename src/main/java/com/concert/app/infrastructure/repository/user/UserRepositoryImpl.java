@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class UserRepositoryImpl implements UserRepository {
 
-    private final UserJpaRepository userJpaRepository;;
+    private final UserJpaRepository userJpaRepository;
 
     @Override
     public User findById(long userId) {

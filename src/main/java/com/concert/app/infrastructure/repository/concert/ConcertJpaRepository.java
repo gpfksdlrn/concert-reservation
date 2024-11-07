@@ -18,7 +18,7 @@ public interface ConcertJpaRepository extends JpaRepository<Concert, Long> {
             left join Payment p on r.id = p.reservationId
             where r.reservedDt < :expiredDt
             and r.status = :status
-            and (p.id is null of p.status <> :paymentStatus)
+            and (p.id is null or p.status <> :paymentStatus)
             group by r.id
             """)
     List<Reservation> findReservationReleaseTarget(@Param("expiredDt") LocalDateTime expiredAt,

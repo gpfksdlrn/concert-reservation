@@ -1,6 +1,5 @@
 package com.concert.app.domain.queue;
 
-import com.concert.app.domain.reservation.ReservationStatus;
 import com.concert.app.interfaces.api.exception.ApiException;
 import com.concert.app.interfaces.api.exception.ExceptionCode;
 import io.jsonwebtoken.Jwts;
