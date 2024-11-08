@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.logging.LogLevel;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -17,7 +18,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Table(name = "USERS")
-public class User {
+@Component
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +37,7 @@ public class User {
     @Column(name = "is_delete", nullable = false)
     private Boolean isDelete = false;
 
-    public User(Long userId, Long userAmount) {
+    public Users(Long userId, Long userAmount) {
         String randomEmail = generateRandomEmail();
         this.id = userId;
         this.userMail = randomEmail;

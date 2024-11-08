@@ -2,7 +2,7 @@ package com.concert.app.domain.user;
 
 public interface UserRepository {
 
-    User findById(long userId);
+    Users findById(long userId);
 
-    User findByIdWithLock(long userId);
+    Users findByIdWithLock(long userId);
 }

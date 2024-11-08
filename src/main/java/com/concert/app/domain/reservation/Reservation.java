@@ -3,7 +3,7 @@ package com.concert.app.domain.reservation;
 import com.concert.app.domain.concert.entity.Concert;
 import com.concert.app.domain.concert.entity.ConcertSchedule;
 import com.concert.app.domain.concert.entity.ConcertSeat;
-import com.concert.app.domain.user.User;
+import com.concert.app.domain.user.Users;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -79,8 +79,8 @@ public class Reservation {
         this.isDelete = false;
     }
 
-    public static Reservation enterReservation(User user, Concert concert, ConcertSeat concertSeat, ConcertSchedule concertSchedule) {
-        return new Reservation(user.getId(), concertSeat.getId(), concert.getTitle(), concertSchedule.getOpenDt(), concertSchedule.getStartDt(), concertSchedule.getEndDt(), concertSeat.getAmount(), concertSeat.getPosition());
+    public static Reservation enterReservation(Users users, Concert concert, ConcertSeat concertSeat, ConcertSchedule concertSchedule) {
+        return new Reservation(users.getId(), concertSeat.getId(), concert.getTitle(), concertSchedule.getOpenDt(), concertSchedule.getStartDt(), concertSchedule.getEndDt(), concertSeat.getAmount(), concertSeat.getPosition());
     }
 
     public void finishReserve() {

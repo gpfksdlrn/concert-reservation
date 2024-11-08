@@ -12,7 +12,7 @@ import com.concert.app.domain.queue.Queue;
 import com.concert.app.domain.queue.QueueRepository;
 import com.concert.app.domain.reservation.Reservation;
 import com.concert.app.domain.reservation.ReservationRepository;
-import com.concert.app.domain.user.User;
+import com.concert.app.domain.user.Users;
 import com.concert.app.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,14 +31,14 @@ public class PaymentService {
 
     @Transactional
     public PaymentConcertResult paymentConcert(String token, long reservationId) {
-        long userId = User.extractUserIdFromJwt(token);
-        User user = userRepository.findById(userId);
+        long userId = Users.extractUserIdFromJwt(token);
+        Users users = userRepository.findById(userId);
 
         Queue queue = queueRepository.findByToken(token);
         queue.tokenReserveCheck();
 
         Reservation reservation = reservationRepository.findById(reservationId);
-        user.checkConcertAmount(reservation.getSeatAmount());
+        users.checkConcertAmount(reservation.getSeatAmount());
 
         // 낙관적 락을 사용하여 좌석 조회 및 예약 처리
         ConcertSeat concertSeat = concertSeatRepository.findById(reservation.getSeatId());
