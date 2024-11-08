@@ -12,6 +12,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.logging.LogLevel;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.security.Key;
 import java.time.LocalDateTime;
@@ -24,6 +26,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Table(name = "QUEUE")
+@Component
 public class Queue {
 
     @Transient
@@ -123,5 +126,20 @@ public class Queue {
 
     public void finishQueue() {
         this.status = QueueStatus.DONE;
+    }
+
+    public static void tokenNullCheck(String token) {
+        if(!StringUtils.hasText(token)) {
+            throw new IllegalArgumentException("토큰이 존재하지 않습니다.");
+        }
+    }
+
+    public void checkToken() {
+        if(status != QueueStatus.PROGRESS) {
+            throw new ApiException(ExceptionCode.E403, LogLevel.WARN);
+        }
+        if(!this.expiredDt.isAfter(LocalDateTime.now())) {
+            throw new ApiException(ExceptionCode.E403, LogLevel.WARN);
+        }
     }
 }
