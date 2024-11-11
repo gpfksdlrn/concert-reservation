@@ -37,6 +37,9 @@ public class Users {
     @Column(name = "is_delete", nullable = false)
     private Boolean isDelete = false;
 
+    @Version
+    private int version;
+
     public Users(Long userId, Long userAmount) {
         String randomEmail = generateRandomEmail();
         this.id = userId;

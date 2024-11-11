@@ -18,8 +18,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Users findByIdWithLock(long userId) {
-        return userJpaRepository.findByIdWithLock(userId)
-                .orElseThrow(() -> new NullPointerException("해당 id의 유저가 존재하지 않습니다."));
+    public void save(Users user) {
+        userJpaRepository.save(user);
     }
 }

@@ -4,5 +4,5 @@ public interface UserRepository {
 
     Users findById(long userId);
 
-    Users findByIdWithLock(long userId);
+    void save(Users user);
 }
