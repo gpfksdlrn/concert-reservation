@@ -25,4 +25,9 @@ public class ConcertSeatRepositoryImpl implements ConcertSeatRepository {
             () -> new RuntimeException("해당 정보를 가진 좌석을 조회할 수 있습니다.")
         );
     }
+
+    @Override
+    public void save(ConcertSeat concertSeat) {
+        jpaRepository.save(concertSeat);
+    }
 }

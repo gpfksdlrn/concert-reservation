@@ -9,4 +9,6 @@ public interface ConcertSeatRepository {
     List<SelectSeatResult> findConcertSeat(long scheduleId);
 
     ConcertSeat findById(long seatId);
+
+    void save(ConcertSeat concertSeat);
 }

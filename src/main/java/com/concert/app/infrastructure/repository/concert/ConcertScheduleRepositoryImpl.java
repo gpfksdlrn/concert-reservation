@@ -24,4 +24,9 @@ public class ConcertScheduleRepositoryImpl implements ConcertScheduleRepository 
                 () -> new NullPointerException("해당 아이디를 가진 콘서트 스케줄이 존재하지 않습니다.")
         );
     }
+
+    @Override
+    public void save(ConcertSchedule concertSchedule) {
+        jpaRepository.save(concertSchedule);
+    }
 }
