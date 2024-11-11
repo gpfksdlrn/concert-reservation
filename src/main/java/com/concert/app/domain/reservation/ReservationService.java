@@ -15,6 +15,7 @@ import com.concert.app.domain.user.Users;
 import com.concert.app.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +28,7 @@ public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final PaymentRepository paymentRepository;
 
+    @Transactional
     public ReserveConcertResult reserveConcert(String token, long scheduleId, long seatId) {
         long userId = Users.extractUserIdFromJwt(token);
         Users users = userRepository.findById(userId);
